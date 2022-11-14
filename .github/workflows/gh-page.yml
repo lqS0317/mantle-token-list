@@ -4,7 +4,10 @@ on:
  workflow_dispatch:
     inputs:
      branches:
-      - master
+      description: App name to build
+      options:
+       - master
+      default: master
       
 
 jobs:
