@@ -1,9 +1,11 @@
 name: gh-pages
 
 on: 
-  push: 
-    branches:    
+ workflow_dispatch:
+    inputs:
+     branches:
       - master
+      
 
 jobs:
   cd:
