@@ -36,9 +36,13 @@ jobs:
       - name: Build
         run: yarn generate --datadir ./data --outfile optimism.tokenlist.json
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+
+      - name: Commit token list
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/hoppscotch-app/dist
-          cname: hop.shuai.dev
+          commit_message: 'bot(ci): generate token list'
+          file_pattern: optimism.tokenlist.json
+
+      - name: Patch token list version
+        run: |
+          npm version patch
