@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: [14]
 
     steps:
       - name: Checkout
@@ -26,15 +26,15 @@ jobs:
           ref: master
 
       - name: Setup node env
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: npm i -g pnpm && pnpm install
+        run: yarn install --frozen-lockfile
 
       - name: Build
-        run: pnpm run generate
+        run: yarn generate --datadir ./data --outfile optimism.tokenlist.json
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
