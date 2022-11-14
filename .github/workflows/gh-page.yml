@@ -43,6 +43,3 @@ jobs:
           commit_message: 'bot(ci): generate token list'
           file_pattern: optimism.tokenlist.json
 
-      - name: Patch token list version
-        run: |
-          npm version patch
